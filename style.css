@@ -313,5 +313,8 @@ padding: 5px;
     .service-containers-2{
         flex-direction: column;
     }
+    .form-group{
+    display: block;
+}
 
 }
