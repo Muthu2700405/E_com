@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singapore Cards and Gift Center</title>
+
+    <!--My css file link-->
+    <link rel="stylesheet" href="style.css">
+
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <!--font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <h2><img src="singapore.png" width="50px" height="40px">Singapore</h2>
+        <div class="navbarItems">
+            <p><a href="index.html">Home</a></p>
+            <p><a href="contact.html">Contact</a></p>
+            <p><a href="collection.html">Collections</a></p>
+        </div>
+        <div class="navItems-toggle" onclick=addSN()>
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+    <!--side nav bar-->
+    <div class="side-navbar">
+        <div class="sidenb" style="text-align: right;" onclick=closeSN()>
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="side-navbarItems">
+            <p><a href="index.html">Home</a></p>
+            <p><a href="contact.html">Contact</a></p>
+            <p><a href="collection.html">Collections</a></p>
+        </div>
+    </div>
+
+    <!--product-->
+    <div class="product-section">
+        <form class="product-search">
+            <input type="text" id="search" placeholder="Search">
+            <i class="fas fa-search"></i>
+        </form>
+
+        <!--teddy bear-->
+        <h2 style="padding-left: 40px; ">Teddy Bears </h2>
+        <div class="product-items">
+
+            <div class="product-box">
+                <img src="https://dummyimage.com/300x200/000/fff&text=Small teddy" alt="Placeholder">
+                <p>Small Teddy Bear</p>
+                <button>Shop now<i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <div class="product-box">
+                <img src="https://dummyimage.com/300x200/000/fff&text=Medium teddy" alt="Placeholder">
+                <p>Medium Teddy Bear</p>
+                <button>Shop now<i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <div class="product-box">
+                <img src="https://dummyimage.com/300x200/000/fff&text=Large teddy" alt="Placeholder">
+                <p>Large Teddy Bear</p>
+                <button>Shop now<i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <div class="product-box">
+                <img src="https://dummyimage.com/300x200/000/fff&text=Packet teddy" alt="Placeholder">
+                <p>Packet-size Teddy Bear</p>
+                <button>Shop now<i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+        <!--photo frames-->
+            <h2 style="padding-left: 40px; ">Photo Frames </h2>
+            <div class="product-items">
+
+                <div class="product-box">
+                    <img src="https://dummyimage.com/300x200/000/fff&text=Small Photo Frames" alt="Placeholder">
+                    <p>Small Photo Frames</p>
+                    <button>Shop now<i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div class="product-box">
+                    <img src="https://dummyimage.com/300x200/000/fff&text=Landscape Frames" alt="Placeholder">
+                    <p>Landscape Frames</p>
+                    <button>Shop now<i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div class="product-box">
+                    <img src="https://dummyimage.com/300x200/000/fff&text=Portrait Frames" alt="Placeholder">
+                    <p>Portrait Frames</p>
+                    <button>Shop now<i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div class="product-box">
+                    <img src="https://dummyimage.com/300x200/000/fff&text= PassPort-size-Photo Frames"
+                        alt="Placeholder">
+                    <p>PassPort-size-Photo </p>
+                    <button>Shop now<i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <!--treanding products-->
+            <h2 style="padding-left: 40px; ">Trending Products </h2>
+            <div class="product-items">
+
+                <div class="product-box">
+                    <img src="https://dummyimage.com/300x200/000/fff&text=TP1" alt="Placeholder">
+                    <p> Trending Product 1</p>
+                    <button>Shop now<i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div class="product-box">
+                    <img src="https://dummyimage.com/300x200/000/fff&text=TP2" alt="Placeholder">
+                    <p>Trending Products 2</p>
+                    <button>Shop now<i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div class="product-box">
+                    <img src="https://dummyimage.com/300x200/000/fff&text=TP3" alt="Placeholder">
+                    <p>Trending Products 3</p>
+                    <button>Shop now<i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div class="product-box">
+                    <img src="https://dummyimage.com/300x200/000/fff&text= TP4"
+                        alt="Placeholder">
+                    <p>Trending Products 4 </p>
+                    <button>Shop now<i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--footer-->
+        <div class="foot">
+            <div>
+                <h2><img src="singapore.png" width="50px" height="40px">Singapore</h2>
+                <p>Step into a world of handpicked treasures, thoughtful gifts, and everyday essentials</p>
+                <a href="https://www.instagram.com/badvibez_forever_?igsh=aGRoOG93bTNiMTgy"><i
+                        class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/badvibez_forever_?igsh=aGRoOG93bTNiMTgy"><i
+                        class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.instagram.com/badvibez_forever_?igsh=aGRoOG93bTNiMTgy"><i
+                        class="fa-brands fa-youtube"></i></a>
+                <p>@2025 Singapore cards and gift center</p>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; flex-basis: 40%;">
+                <div>
+                    <img src="og.png" height="80px" width="80px">
+                </div>
+                <div>
+                    <h3> 100% Original </h3>
+                    <p>guarantee for all products at singapore.com</p>
+                </div>
+                <br>
+                <div>
+                    <h3>Address</h3>
+                    <p>karpagam Complex,College Road,Sekkalai,KaraiKudi- 630002</p>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+        <script src="search.js"></script>
+</body>
+
+</html>
