@@ -13,40 +13,113 @@ function addtocart(index) {
 
     let cartitems = JSON.parse(localStorage.getItem("cartitems")) || [];
 
-    cartitems.push({ name, img });
+    const existingItem = cartitems.find(item => item.name === name);
+
+    if (existingItem) {
+        existingItem.quantity += 1; // Increment quantity
+    } else {
+        cartitems.push({ name, img, quantity: 1 }); // Add new item with quantity
+    }
 
     localStorage.setItem("cartitems", JSON.stringify(cartitems));
+    updateCartBadge();
 
     alert(`${name} is added to cart`);
 }
 
 
-window.onload = function(){
+window.onload = function () {
     const cart = document.querySelector('.cart-container');
+    if (cart) {
+        const cartitems = JSON.parse(localStorage.getItem("cartitems")) || [];
+        if (cartitems.length == 0) {
+            cart.innerHTML = "<div><h1>Cart is empty<i class='fa-solid fa-cart-shopping'></i></h1><p>There is nothing in your bag. Let's add some items.</p> <a href='collection.html'>Add items to Cart</a></div>"
+            cart.setAttribute('class', 'emptycart');
+            document.querySelector('.clearCart').style.display = 'none';
+        }
+        else {
+            var carthead = document.createElement('h1');
+            carthead.textContent = 'Your Cart Items';
+            carthead.style.display = 'block';
+            carthead.style.width = '80vm';
+            cart.appendChild(carthead);
+            cartitems.forEach((item, index) => {
+                const itemdiv = document.createElement('div');
+                itemdiv.classList.add('cart-item')
+                itemdiv.innerHTML = `<img src=${item.img}>
+            <p>${item.name}</p>
+            <div class="controls">
+            <button onclick="decreaseQuantity(${index})">−</button>
+            <span>${item.quantity}</span>
+            <button onclick="increaseQuantity(${index})">+</button>
+            <button onclick="removeItem(${index})" style='background-color: transparent;'>🗑️</button>
+            </div>`;
+                cart.appendChild(itemdiv);
 
-    const cartitems = JSON.parse(localStorage.getItem("cartitems")) || [];
-    if (cartitems.length == 0) {
-        cart.innerHTML = "<div><h1>Cart is empty<i class='fa-solid fa-cart-shopping'></i></h1><p>There is nothing in your bag. Let's add some items.</p> <a href='collection.html'>Add items to Cart</a></div>"
-        cart.setAttribute('class', 'emptycart');
-        document.querySelector('.clearCart').style.display='none';
-    }
-    else{
-        cart.innerHTML= "<h1 style='display:block; width:80vm'>Your Cart Items</h1>";
-        cartitems.forEach( item => {
-            const itemdiv = document.createElement('div');
-            itemdiv.classList.add('cart-item')
-            itemdiv.innerHTML=`<img src=${item.img}><p>${item.name}</p>`;
-            cart.appendChild(itemdiv);
-
-        });
-        document.querySelector('.clearCart').style.display='block';
+            });
+            document.querySelector('.clearCart').style.display = 'block';
+        }
     }
 };
 
-function clearCart(){
+function increaseQuantity(index) {
+    let cartitems = JSON.parse(localStorage.getItem('cartitems')) || [];
+    cartitems[index].quantity += 1;
+    localStorage.setItem('cartitems', JSON.stringify(cartitems));
+    location.reload();
+}
+
+function decreaseQuantity(index) {
+    let cartitems = JSON.parse(localStorage.getItem('cartitems')) || [];
+
+    if (cartitems[index].quantity > 1) {
+        cartitems[index].quantity -= 1;
+    }
+    else {
+        cartitems.splice(index, 1);
+    }
+    localStorage.setItem('cartitems', JSON.stringify(cartitems));
+    location.reload();
+}
+function removeItem(index) {
+    let cartitems = JSON.parse(localStorage.getItem("cartitems")) || [];
+    cartitems.splice(index, 1);
+    localStorage.setItem("cartitems", JSON.stringify(cartitems));
+    location.reload();
+}
+
+function clearCart() {
     localStorage.removeItem("cartitems");
     location.reload();
 }
+
+function updateCartBadge() {
+    const cartCountElement = document.querySelector('.cart-count');
+    const cartItems = JSON.parse(localStorage.getItem('cartitems')) || [];
+
+    let cartCount = 0;
+    for (let i = 0; i < cartItems.length; i++) {
+        cartCount += Number(cartItems[i].quantity);
+    }
+
+    if (cartCountElement) {
+        if (cartCount === 0) {
+            cartCountElement.style.display = 'none';
+        } else {
+            cartCountElement.style.display = 'inline-block';
+            cartCountElement.textContent = cartCount;
+
+            // Trigger animation
+            cartCountElement.classList.remove('pop-animate');
+            void cartCountElement.offsetWidth; // Trigger reflow
+            cartCountElement.classList.add('pop-animate');
+        }
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartBadge();
+});
 
 
 
