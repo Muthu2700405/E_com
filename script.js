@@ -26,7 +26,7 @@ window.onload = function(){
 
     const cartitems = JSON.parse(localStorage.getItem("cartitems")) || [];
     if (cartitems.length == 0) {
-        cart.innerHTML = "<center><h1>Cart is empty<i class='fa-solid fa-cart-shopping'></i></h1><center><p>There is nothing in your bag. Let's add some items.</p> <a href='collection.html'>Add items to Cart</a>"
+        cart.innerHTML = "<div><h1>Cart is empty<i class='fa-solid fa-cart-shopping'></i></h1><p>There is nothing in your bag. Let's add some items.</p> <a href='collection.html'>Add items to Cart</a></div>"
         cart.setAttribute('class', 'emptycart');
         document.querySelector('.clearCart').style.display='none';
     }
