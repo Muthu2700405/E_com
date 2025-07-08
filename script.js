@@ -6,71 +6,103 @@ function closeSN() {
     sn.style.left = '-70%'
 }
 
+const items = document.querySelectorAll('.product-box')
+function addtocart(index) {
+    const img = items[index].querySelector('img').src;
+    const name = items[index].querySelector('p').textContent;
 
-cart = document.querySelector('.cart-container')
-if (cart.textContent === '') {
-    cart.innerHTML = "<center><h1>Cart is empty<i class='fa-solid fa-cart-shopping'></i></h1><center><p>There is nothing in your bag. Let's add some items.</p> <a href='collection.html'>Add items to Cart</a>"
-    cart.setAttribute('class', 'emptycart');
+    let cartitems = JSON.parse(localStorage.getItem("cartitems")) || [];
+
+    cartitems.push({ name, img });
+
+    localStorage.setItem("cartitems", JSON.stringify(cartitems));
+
+    alert(`${name} is added to cart`);
 }
 
-function addtocart(element) {
-    cart.classList.remove('.emptycart');
+
+window.onload = function(){
+    const cart = document.querySelector('.cart-container');
+
+    const cartitems = JSON.parse(localStorage.getItem("cartitems")) || [];
+    if (cartitems.length == 0) {
+        cart.innerHTML = "<center><h1>Cart is empty<i class='fa-solid fa-cart-shopping'></i></h1><center><p>There is nothing in your bag. Let's add some items.</p> <a href='collection.html'>Add items to Cart</a>"
+        cart.setAttribute('class', 'emptycart');
+        document.querySelector('.clearCart').style.display='none';
+    }
+    else{
+        cart.innerHTML= "<h1 style='display:block; width:80vm'>Your Cart Items</h1>";
+        cartitems.forEach( item => {
+            const itemdiv = document.createElement('div');
+            itemdiv.classList.add('cart-item')
+            itemdiv.innerHTML=`<img src=${item.img}><p>${item.name}</p>`;
+            cart.appendChild(itemdiv);
+
+        });
+        document.querySelector('.clearCart').style.display='block';
+    }
+};
+
+function clearCart(){
+    localStorage.removeItem("cartitems");
+    location.reload();
 }
-
-
 
 
 
 var search = document.getElementById('search')
 var prcont = document.querySelectorAll('.product-box')
 console.log(prcont)
-if (search){search.addEventListener("keyup", function (event) {
-    var enterval = event.target.value.toUpperCase();
-    for (var i = 0; i < prcont.length; i++) {
-        event.preventDefault();
-        var prname = prcont[i].querySelector('p').textContent.toUpperCase()
-        if (prname.indexOf(enterval) < 0) {
-            prcont[i].style.display = 'none';
-        } else {
-            prcont[i].style.display = 'block';
+if (search) {
+    search.addEventListener("keyup", function (event) {
+        var enterval = event.target.value.toUpperCase();
+        for (var i = 0; i < prcont.length; i++) {
+            event.preventDefault();
+            var prname = prcont[i].querySelector('p').textContent.toUpperCase()
+            if (prname.indexOf(enterval) < 0) {
+                prcont[i].style.display = 'none';
+            } else {
+                prcont[i].style.display = 'block';
+            }
         }
-    }
-});
-search.addEventListener("keydown", function (event) {
-    if (event.key==='Enter'){
-    var enterval = event.target.value.toUpperCase();
-    for (var i = 0; i < prcont.length; i++) {
-        event.preventDefault();
-        var prname = prcont[i].querySelector('p').textContent.toUpperCase()
-        if (prname.indexOf(enterval) < 0) {
-            prcont[i].style.display = 'none';
-        } else {
-            prcont[i].style.display = 'block';
+    });
+    search.addEventListener("keydown", function (event) {
+        if (event.key === 'Enter') {
+            var enterval = event.target.value.toUpperCase();
+            for (var i = 0; i < prcont.length; i++) {
+                event.preventDefault();
+                var prname = prcont[i].querySelector('p').textContent.toUpperCase()
+                if (prname.indexOf(enterval) < 0) {
+                    prcont[i].style.display = 'none';
+                } else {
+                    prcont[i].style.display = 'block';
+                }
+            }
         }
-    }}
-});}
-
-
-
-document.addEventListener('DOMContentLoaded', ()=>{
-    var form = document.getElementById("detailForm")
-
-    if (form){
-        form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        var name = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var phone = document.getElementById("phone").value;
-        var msg = document.getElementById("msg").value;
-
-        console.log("Form Submitted:");
-        console.log("Name:", name);
-        console.log("Email:", email);
-        console.log("Phone:", phone);
-        console.log("Message:", msg);
-        alert("Your details have been Submitted ! \n Thanks for contacting Us")
     });
 }
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    var form = document.getElementById("detailForm")
+
+    if (form) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var msg = document.getElementById("msg").value;
+
+            console.log("Form Submitted:");
+            console.log("Name:", name);
+            console.log("Email:", email);
+            console.log("Phone:", phone);
+            console.log("Message:", msg);
+            alert("Your details have been Submitted ! \n Thanks for contacting Us")
+        });
+    }
 
 });
 
