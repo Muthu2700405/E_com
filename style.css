@@ -459,6 +459,27 @@ padding: 10px;
   animation: pop 0.3s ease;
 }
 
+.billing {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+.billing p {
+  margin: 6px 0;
+}
+
+.billing button {
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  border: none;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+
 
 
 @media screen and (max-width:800px) {

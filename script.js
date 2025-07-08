@@ -10,6 +10,7 @@ const items = document.querySelectorAll('.product-box')
 function addtocart(index) {
     const img = items[index].querySelector('img').src;
     const name = items[index].querySelector('p').textContent;
+    const price = parseFloat(items[index].querySelector('.price').textContent.replace("₹", ""));
 
     let cartitems = JSON.parse(localStorage.getItem("cartitems")) || [];
 
@@ -18,7 +19,7 @@ function addtocart(index) {
     if (existingItem) {
         existingItem.quantity += 1; // Increment quantity
     } else {
-        cartitems.push({ name, img, quantity: 1 }); // Add new item with quantity
+        cartitems.push({ name, img, quantity: 1, price }); // Add new item with quantity
     }
 
     localStorage.setItem("cartitems", JSON.stringify(cartitems));
@@ -38,6 +39,7 @@ window.onload = function () {
             document.querySelector('.clearCart').style.display = 'none';
         }
         else {
+            let subtotal = 0;
             var carthead = document.createElement('h1');
             carthead.textContent = 'Your Cart Items';
             carthead.style.display = 'block';
@@ -46,8 +48,13 @@ window.onload = function () {
             cartitems.forEach((item, index) => {
                 const itemdiv = document.createElement('div');
                 itemdiv.classList.add('cart-item')
+
+                let itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
                 itemdiv.innerHTML = `<img src=${item.img}>
             <p>${item.name}</p>
+            <p>₹${item.price} × ${item.quantity} = ₹${itemTotal}</p>
             <div class="controls">
             <button onclick="decreaseQuantity(${index})">−</button>
             <span>${item.quantity}</span>
@@ -58,6 +65,25 @@ window.onload = function () {
 
             });
             document.querySelector('.clearCart').style.display = 'block';
+
+
+            const billingDiv = document.createElement('div');
+            billingDiv.classList.add('billing');
+
+            const tax = Math.round(subtotal * 0.05); // 5% GST
+            const total = subtotal + tax;
+
+            billingDiv.innerHTML = `
+                            <hr>
+                        <h3>Billing Summary</h3>
+             <p>Subtotal: ₹${subtotal}</p>
+                <p>Tax (5% GST): ₹${tax}</p>
+                     <p><strong>Total: ₹${total}</strong></p>
+                     <button onclick="alert('Proceeding to checkout...')">Proceed to Checkout</button>
+`;
+
+            cart.appendChild(billingDiv);
+
         }
     }
 };
