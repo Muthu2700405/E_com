@@ -432,6 +432,7 @@ padding: 10px;
 .login-options a{
     text-decoration: none;
     cursor:pointer;
+    color: rgb(252, 252, 252);
 }
 .other-options{
     display: flex;
